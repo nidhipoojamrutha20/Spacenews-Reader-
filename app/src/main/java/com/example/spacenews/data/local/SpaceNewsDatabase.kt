@@ -11,7 +11,7 @@ abstract class SpaceNewsDatabase : RoomDatabase() {
 
     companion object {
         val MIGRATION_1_2: Migration = object : Migration(1, 2) {
-            override fun migrate(db: SupportSQLiteDatabase) {
+            override fun migrate(database: SupportSQLiteDatabase) {
                 database.execSQL("ALTER TABLE bookmarks ADD COLUMN savedAt INTEGER")
             }
         }
