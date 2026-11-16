@@ -1,3 +1,4 @@
+
 # Test and verification results
 
 Verification run on 2026-11-14. Results below reflect commands and emulator behavior observed for this project.
@@ -37,3 +38,27 @@ The emulator did not confirm the transient offline refresh/search retry message 
 ## APK
 
 `app/build/outputs/apk/debug/app-debug.apk` is a **debug build**, signed with the local debug key. Do not distribute it as a production release.
+
+---
+
+## Additional verification — 2026-11-16
+
+The following checks were completed after the speech-related changes:
+
+| Command | Result |
+|---|---|
+| `.\gradlew.bat :app:testDebugUnitTest` | BUILD SUCCESSFUL. |
+| `git diff --check` | Passed; no whitespace errors reported. |
+
+### New speech regression tests
+
+Added `PendingSpeechRequestQueueTest.kt` with four test cases covering:
+
+- Storing a pending speech request.
+- Replacing an older pending request with a newer request.
+- Consuming a request only once.
+- Clearing a pending request.
+
+The speech controller and pending request queue changes compiled successfully as part of the Gradle test task.
+
+Audible TTS output and device-level audio-focus behavior have not been newly verified on an emulator or physical device.
